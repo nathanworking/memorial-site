@@ -714,8 +714,6 @@ h6 {
 
 img {
   vertical-align: middle; }
-  img:not(.lazy) {
-    height: auto; }
 
 figure {
   margin: 0; }
@@ -2735,18 +2733,48 @@ body main {
     margin-left: 25px;
     margin-right: 0; }
 
-.photo-grid {
-  padding: 0;
-  font-size: 0;
-  display: block; }
-  .photo-grid li {
-    display: inline-block;
-    font-size: 0;
-    vertical-align: top;
-    float: none;
-    cursor: pointer; }
-  .photo-grid img {
-    display: block; }
+/**** Photo Gallery Styles ****/
+
+.grid-box div {
+	position: relative;
+  max-width: 325px;
+  border-radius: 5px;
+  margin: 0  auto 0 auto;
+	overflow: hidden;
+	width: 100%;
+	background: #5A6071;
+	text-align: center;
+}
+
+.grid-box div figcaption {
+	padding: 2em;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1.25em;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.display-edit {
+  display: inline-block;
+}
+
+.grid-box div figcaption::before,
+.grid-box div figcaption::after {
+	pointer-events: none;
+}
+
+.grid-box div figcaption {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.grid-box div p {
+	margin: 0;
+}
 
 
     /***** Milo *****/
@@ -2798,58 +2826,49 @@ body main {
     	transform: translate3d(0,0,0);
     }
 
-
-.photo-bg-rem {
-  background: #F8F3ED;
-  border-radius: 6px;
+.grid {
+	max-width: 69em;
+	list-style: none;
+	margin: 30px auto;
+	padding: 0;
 }
 
-.mansory div {
-	position: relative;
-  max-width: 325px;
-  border-radius: 5px;
-  margin: 0  auto 10% auto;
-	overflow: hidden;
-	width: 100%;
-	background: #5A6071;
-	text-align: center;
+.grid li {
+	display: block;
+	float: left;
+	padding: 7px;
+	width: 33%;
+	opacity: 0;
 }
 
-.mansory div figcaption {
-	padding: 2em;
-	color: #fff;
-	text-transform: uppercase;
-	font-size: 1.25em;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
+.grid li.shown,
+.no-js .grid li,
+.no-cssanimations .grid li {
+	opacity: 1;
 }
 
-.display-edit {
-  display: inline-block;
+.grid li a,
+.grid li img {
+	outline: none;
+	border: none;
+	display: block;
+	max-width: 100%;
 }
 
-.mansory div figcaption::before,
-.mansory div figcaption::after {
-	pointer-events: none;
+/* Effect 2: Move Up */
+.grid.effect-2 li.animate {
+	-webkit-transform: translateY(200px);
+	transform: translateY(200px);
+	-webkit-animation: moveUp 0.65s ease forwards;
+	animation: moveUp 0.65s ease forwards;
 }
 
-.mansory div figcaption {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+@-webkit-keyframes moveUp {
+	0% { }
+	100% { -webkit-transform: translateY(0); opacity: 1; }
 }
 
-.mansory div p {
-	margin: 0;
-}
-
-.mansory {
-  -moz-column-count:3;
-  -moz-column-gap: 3%;
-  -webkit-column-count:3;
-  -webkit-column-gap: 3%;
-  column-count: 3;
-  column-gap: 3%;
+@keyframes moveUp {
+	0% { }
+	100% { -webkit-transform: translateY(0); transform: translateY(0); opacity: 1; }
 }
